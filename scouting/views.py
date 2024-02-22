@@ -78,6 +78,8 @@ def upload_record(request):
 
         offense_skill=form.cleaned_data.get('offenseSkill'),
         defense_skill=form.cleaned_data.get('defenseSkill'),
+        human_player_rating=form.cleaned_data.get('humanPlayerRating'),
+        driver_rating=form.cleaned_data.get('driverRating'),
         died=form.cleaned_data.get('died'),
         tipped_over=form.cleaned_data.get('tippedOver'),
         card=form.cleaned_data.get('card'),
@@ -109,11 +111,11 @@ def get_team_records(request, team_number):
     if not records.exists():
         return JsonResponse({'error': 'team.not_found'}, status=404)
 
-    return JsonResponse(records_dump(records))
+    return JsonResponse(records_dump(records), safe=False)
 
 
 def get_teams(request):
     if not request.method == 'GET':
         return JsonResponse({'error': 'request.method'}, status=405)
 
-    return JsonResponse(records_dump(list(set(Record.objects.values_list('team_number', flat=True)))), safe=False)
+    return JsonResponse(list(set(Record.objects.values_list('team_number', flat=True))), safe=False)

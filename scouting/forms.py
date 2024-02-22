@@ -29,8 +29,10 @@ class UploadRecordForm(Form):
     endPosition = fields.CharField(required=False)
     harmony = fields.CharField(required=False)
 
-    offenseSkill = fields.CharField(required=False)
-    defenseSkill = fields.CharField(required=False)
+    offenseSkill = fields.IntegerField(required=False)
+    defenseSkill = fields.IntegerField(required=False)
+    humanPlayerRating = fields.IntegerField(required=False)
+    driverRating = fields.IntegerField(required=False)
     died = fields.BooleanField(required=False)
     tippedOver = fields.BooleanField(required=False)
     card = fields.CharField(required=False)

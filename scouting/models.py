@@ -23,12 +23,6 @@ class Record(models.Model):
         SECOND_ON_CHAIN = '2 链'
         THIRD_ON_CHAIN = '3 链'
 
-    class Skills(models.TextChoices):
-        NOT_EFFECTIVE = '不佳'
-        AVERAGE = '平均水平'
-        VERY_EFFECTIVE = '非常有效'
-        NOT_OBSERVED = '未观测'
-
     class Cards(models.TextChoices):
         NO = '无'
         RED_CARD = '红牌'
@@ -60,8 +54,10 @@ class Record(models.Model):
     end_position = models.CharField(max_length=10, choices=EndPosition.choices, null=False)
     harmony = models.CharField(max_length=10, choices=Harmony.choices, null=False)
 
-    offense_skill = models.CharField(max_length=10, choices=Skills.choices, null=False)
-    defense_skill = models.CharField(max_length=10, choices=Skills.choices, null=False)
+    offense_skill = models.IntegerField(null=False)
+    defense_skill = models.IntegerField(null=False)
+    human_player_rating = models.IntegerField(null=False)
+    driver_rating = models.IntegerField(null=False)
     died = models.BooleanField(null=False)
     tipped_over = models.BooleanField(null=False)
     card = models.CharField(max_length=10, choices=Cards.choices, null=False)
