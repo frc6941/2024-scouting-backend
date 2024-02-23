@@ -34,6 +34,7 @@ class UploadRecordForm(Form):
     humanPlayerRating = fields.IntegerField(required=False)
     driverRating = fields.IntegerField(required=False)
     strategyRating = fields.IntegerField(required=False)
+    cycleTime = fields.IntegerField(required=False)
     died = fields.BooleanField(required=False)
     tippedOver = fields.BooleanField(required=False)
     card = fields.CharField(required=False)

@@ -59,6 +59,7 @@ class Record(models.Model):
     human_player_rating = models.IntegerField(null=False)
     driver_rating = models.IntegerField(null=False)
     strategy_rating = models.IntegerField(null=False)
+    cycle_time = models.IntegerField(null=False)
     died = models.BooleanField(null=False)
     tipped_over = models.BooleanField(null=False)
     card = models.CharField(max_length=10, choices=Cards.choices, null=False)
