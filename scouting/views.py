@@ -83,6 +83,7 @@ def upload_record(request):
         defense_skill=form.cleaned_data.get('defenseSkill'),
         human_player_rating=form.cleaned_data.get('humanPlayerRating'),
         driver_rating=form.cleaned_data.get('driverRating'),
+        strategy_rating=form.cleaned_data.get('strategyRating'),
         died=form.cleaned_data.get('died'),
         tipped_over=form.cleaned_data.get('tippedOver'),
         card=form.cleaned_data.get('card'),
