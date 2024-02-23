@@ -21,7 +21,7 @@ class UploadRecordForm(Form):
     coopertition = fields.BooleanField(required=False)
     teleopAmpScored = fields.IntegerField(required=False)
     teleopAmpMissed = fields.IntegerField(required=False)
-    teleopSpeakerScore = fields.IntegerField(required=False)
+    teleopSpeakerScored = fields.IntegerField(required=False)
     teleopSpeakerMissed = fields.IntegerField(required=False)
     teleopTrapScored = fields.IntegerField(required=False)
     teleopFoul = fields.IntegerField(required=False)
