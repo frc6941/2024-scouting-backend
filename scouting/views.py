@@ -69,7 +69,7 @@ def upload_record(request):
         auto_foul=form.cleaned_data.get('autoFoul'),
 
         coopertition=form.cleaned_data.get('coopertition'),
-        teleop_amp_scored=form.cleaned_data.get('teleopAmpScores'),
+        teleop_amp_scored=form.cleaned_data.get('teleopAmpScored'),
         teleop_amp_missed=form.cleaned_data.get('teleopAmpMissed'),
         teleop_speaker_scored=form.cleaned_data.get('teleopSpeakerScore'),
         teleop_speaker_missed=form.cleaned_data.get('teleopSpeakerMissed'),
