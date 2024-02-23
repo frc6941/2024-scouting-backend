@@ -35,6 +35,7 @@ def record_dump(record: models.Record):
         'humanPlayerRating': record.human_player_rating,
         'driverRating': record.driver_rating,
         'strategyRating': record.strategy_rating,
+        'cycleTime': record.cycle_time,
         'died': record.died,
         'tippedOver': record.tipped_over,
         'card': record.card,
