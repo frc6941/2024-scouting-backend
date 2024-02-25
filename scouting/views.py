@@ -125,3 +125,17 @@ def get_teams(request):
         return JsonResponse({'error': 'request.method'}, status=405)
 
     return JsonResponse(list(set(Record.objects.values_list('team_number', flat=True))), safe=False)
+
+
+def get_record_ranking(response, record_type):
+    if not request.method == 'GET':
+        return JsonResponse({'error': 'request.method'}, status=405)
+
+    record_fields = [field.name for field in Record._meta.get_fields()]
+    if record_type not in record_fields:
+        return JsonResponse({'error': 'invalid.record_type'}, status=400)
+
+    ranked_teams = Record.objects.values_list(
+        'team_number', flat=True).order_by('-' + record_type)
+
+    return JsonResponse(list(ranked_teams), safe=False)
