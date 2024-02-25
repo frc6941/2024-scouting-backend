@@ -24,5 +24,6 @@ urlpatterns = [
     path('api/records', scouting.views.get_all_records),
     path('api/record', scouting.views.upload_record),
     path('api/record/team/<int:team_number>', scouting.views.get_team_records),
+    path('api/record/<string:record_type>', scouting.views.get_record_ranking),
     path('api/teams', scouting.views.get_teams)
 ]
