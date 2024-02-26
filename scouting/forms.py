@@ -39,3 +39,13 @@ class UploadRecordForm(Form):
     tippedOver = fields.BooleanField(required=False)
     card = fields.CharField(required=False)
     comments = fields.CharField(required=False)
+
+
+class UploadPitScoutForm(Form):
+    teamNumber = fields.CharField(required=False)
+    canAmp = fields.BooleanField(required=False)
+    canSpeaker = fields.BooleanField(required=False)
+    canTrap = fields.BooleanField(required=False)
+    chassisType = fields.CharField(required=False)
+    cycleTime = fields.CharField(required=False)
+    autoType = fields.CharField(required=False)

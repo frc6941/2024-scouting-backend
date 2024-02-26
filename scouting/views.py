@@ -2,8 +2,20 @@ from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 
 from scouting import models
-from scouting.forms import UploadRecordForm
-from scouting.models import Record
+from scouting.forms import UploadRecordForm, UploadPitScoutForm
+from scouting.models import Record, PitTeam
+
+
+def pit_team_dump(pit_team: models.PitTeam):
+    return {
+        'teamNumber': pit_team.team_number,
+        'canAmp': pit_team.can_amp,
+        'canSpeaker': pit_team.can_speaker,
+        'canTrap': pit_team.can_trap,
+        'chassisType': pit_team.chassis_type,
+        'cycleTime': pit_team.cycle_time,
+        'autoType': pit_team.auto_type
+    }
 
 
 def record_dump(record: models.Record):
@@ -51,7 +63,6 @@ def upload_record(request):
     form = UploadRecordForm(request.POST)
 
     if not form.is_valid():
-        print(form.errors)
         return JsonResponse({'errors': form.errors}, status=400)
 
     record = Record.objects.create(
@@ -125,3 +136,36 @@ def get_teams(request):
         return JsonResponse({'error': 'request.method'}, status=405)
 
     return JsonResponse(list(set(Record.objects.values_list('team_number', flat=True))), safe=False)
+
+
+def upload_scout(request):
+    if not request.method == 'POST':
+        return JsonResponse({'error': 'request.method'}, status=405)
+
+    form = UploadPitScoutForm(request.POST)
+
+    if not form.is_valid():
+        return JsonResponse({'errors': form.errors}, status=400)
+
+    pit_scout = PitTeam(
+        team_number=form.cleaned_data.get('teamNumber'),
+        can_amp=form.cleaned_data.get('canAmp'),
+        can_speaker=form.cleaned_data.get('canSpeaker'),
+        can_trap=form.cleaned_data.get('canTrap'),
+        chassis_type=form.cleaned_data.get('chassisType'),
+        cycle_time=form.cleaned_data.get('cycleTime'),
+        auto_type=form.cleaned_data.get('autoType')
+    )
+    pit_scout.save()
+    return JsonResponse(pit_team_dump(pit_scout), status=200)
+
+
+def get_pit_data(request, team_number):
+    if not request.method == 'GET':
+        return JsonResponse({'error': 'request.method'}, status=405)
+
+    team = PitTeam.objects.filter(team_number=team_number)
+    if not team.exists():
+        return JsonResponse({'error': 'team.not_found'}, status=404)
+
+    return JsonResponse(pit_team_dump(team), safe=False)

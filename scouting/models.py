@@ -1,6 +1,17 @@
 from django.db import models
 
 
+class PitTeam(models.Model):
+    id = models.BigAutoField(primary_key=True)
+    team_number = models.CharField(null=False)
+    can_amp = models.BooleanField(null=False)
+    can_speaker = models.BooleanField(null=False)
+    can_trap = models.BooleanField(null=False)
+    chassis_type = models.CharField(max_length=30, null=False)
+    cycle_time = models.CharField(max_length=30, null=False)
+    auto_type = models.CharField(max_length=30, null=False)
+
+
 class Record(models.Model):
     class AllianceRobot(models.TextChoices):
         RED_1 = 'Red 1'
