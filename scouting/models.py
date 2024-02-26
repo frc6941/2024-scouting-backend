@@ -3,7 +3,7 @@ from django.db import models
 
 class PitTeam(models.Model):
     id = models.BigAutoField(primary_key=True)
-    team_number = models.CharField(null=False)
+    team_number = models.CharField(unique=True, null=False)
     can_amp = models.BooleanField(null=False)
     can_speaker = models.BooleanField(null=False)
     can_trap = models.BooleanField(null=False)
