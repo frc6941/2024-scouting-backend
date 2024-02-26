@@ -14,7 +14,8 @@ def pit_team_dump(pit_team: models.PitTeam):
         'canTrap': pit_team.can_trap,
         'chassisType': pit_team.chassis_type,
         'cycleTime': pit_team.cycle_time,
-        'autoType': pit_team.auto_type
+        'autoType': pit_team.auto_type,
+        'pictureUrl': pit_team.picture_url
     }
 
 
@@ -154,7 +155,8 @@ def upload_scout(request):
         can_trap=form.cleaned_data.get('canTrap'),
         chassis_type=form.cleaned_data.get('chassisType'),
         cycle_time=form.cleaned_data.get('cycleTime'),
-        auto_type=form.cleaned_data.get('autoType')
+        auto_type=form.cleaned_data.get('autoType'),
+        picture_url=form.cleaned_data.get('pictureUrl')
     )
     pit_scout.save()
     return JsonResponse(pit_team_dump(pit_scout), status=200)

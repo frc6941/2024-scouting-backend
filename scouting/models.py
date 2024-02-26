@@ -10,6 +10,7 @@ class PitTeam(models.Model):
     chassis_type = models.CharField(max_length=30, null=False)
     cycle_time = models.CharField(max_length=30, null=False)
     auto_type = models.CharField(max_length=30, null=False)
+    picture_url = models.CharField(max_length=70, null=False)
 
 
 class Record(models.Model):

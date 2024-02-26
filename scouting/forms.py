@@ -49,3 +49,4 @@ class UploadPitScoutForm(Form):
     chassisType = fields.CharField(required=False)
     cycleTime = fields.CharField(required=False)
     autoType = fields.CharField(required=False)
+    pictureUrl = fields.CharField(required=False)
