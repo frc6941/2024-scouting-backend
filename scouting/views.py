@@ -139,6 +139,7 @@ def get_teams(request):
     return JsonResponse(list(set(Record.objects.values_list('team_number', flat=True))), safe=False)
 
 
+@csrf_exempt
 def upload_scout(request):
     if not request.method == 'POST':
         return JsonResponse({'error': 'request.method'}, status=405)
