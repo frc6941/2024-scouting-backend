@@ -172,4 +172,4 @@ def get_pit_data(request, team_number):
     if not team.exists():
         return JsonResponse({'error': 'team.not_found'}, status=404)
 
-    return JsonResponse(pit_team_dump(team), safe=False)
+    return JsonResponse(pit_team_dump(team.first()), safe=False)
