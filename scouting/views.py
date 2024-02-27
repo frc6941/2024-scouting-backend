@@ -136,17 +136,8 @@ def get_teams(request):
     if not request.method == 'GET':
         return JsonResponse({'error': 'request.method'}, status=405)
 
-    return JsonResponse(remove_duplicates(Record.objects.values_list('team_number', flat=True),
-                                          PitTeam.objects.values_list('team_number', flat=True)), safe=False)
-
-
-def remove_duplicates(list1: list, list2: list):
-    _list1 = list(map(str, list1))
-    _list2 = list(map(str, list2))
-    for i in _list2:
-        if i not in _list1:
-            _list1.append(i)
-    return _list1
+    return JsonResponse(set(map(str, Record.objects.values_list('team_number', flat=True)))
+                        .union(set(map(str, PitTeam.objects.values_list('team_number', flat=True)))))
 
 
 @csrf_exempt
