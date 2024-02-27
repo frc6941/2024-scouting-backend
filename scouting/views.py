@@ -137,7 +137,7 @@ def get_teams(request):
         return JsonResponse({'error': 'request.method'}, status=405)
 
     return JsonResponse(set(map(str, Record.objects.values_list('team_number', flat=True)))
-                        .union(set(map(str, PitTeam.objects.values_list('team_number', flat=True)))))
+                        .union(set(map(str, PitTeam.objects.values_list('team_number', flat=True)))), safe=False)
 
 
 @csrf_exempt
