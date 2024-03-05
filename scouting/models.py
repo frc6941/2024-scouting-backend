@@ -12,6 +12,9 @@ class PitTeam(models.Model):
     auto_type = models.CharField(max_length=30, null=False)
     picture_url = models.CharField(max_length=70, null=False)
 
+    def __str__(self):
+        return self.team_number
+
 
 class Record(models.Model):
     class AllianceRobot(models.TextChoices):
@@ -76,3 +79,6 @@ class Record(models.Model):
     tipped_over = models.BooleanField(null=False)
     card = models.CharField(max_length=10, choices=Cards.choices, null=False)
     comments = models.TextField()
+
+    def __str__(self):
+        return str(self.team_number) + " " + str(self.match_number)
